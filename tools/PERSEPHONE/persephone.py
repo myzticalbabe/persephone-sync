@@ -26,10 +26,10 @@ import os
 import sys
 import subprocess
 from pathlib import Path
+
 # from typing import Dict, List, Optional, Tuple  # removed — all names have native equivalents
 from dataclasses import dataclass
 from enum import Enum
-from typing import List
 import json
 
 #: Swallows recorded when the failure ledger is unavailable (it is a stdlib-only
@@ -37,7 +37,8 @@ import json
 
 try:
     from CORE.failure_ledger import note_failure
-except ImportError:                               # never break the host
+except ImportError:  # never break the host
+
     def note_failure(where: str, exc: BaseException | None = None) -> None:
         pass  # ledger missing; evidence-vs-silence tradeoff capped here
 
@@ -56,7 +57,7 @@ class CrossPath:
 
     wsl_path: str = ""
     windows_path: str = ""
-    absolute_path: (Path | None) = None
+    absolute_path: Path | None = None
 
 
 class PersephoneConfig:
@@ -131,7 +132,7 @@ except ImportError as exc:
         with open(self.config_file, "w", encoding="utf-8") as f:
             json.dump(self.paths, f, indent=2)
 
-    def get_path(self, name: str, platform: (str | None) = None) -> str:
+    def get_path(self, name: str, platform: str | None = None) -> str:
         """Get path for a named location."""
         if platform is None:
             platform = detect_platform().value
@@ -141,7 +142,7 @@ except ImportError as exc:
 
         return ""
 
-    def set_path(self, name: str, windows_path: str, wsl_path: (str | None) = None):
+    def set_path(self, name: str, windows_path: str, wsl_path: str | None = None):
         """set path for a named location."""
         if name not in self.paths:
             self.paths[name] = {}
@@ -326,7 +327,7 @@ class Persephone:
 
         return paths
 
-    def sync_to_wsl(self, source: (str | None) = None, dry_run: bool = True) -> dict:
+    def sync_to_wsl(self, source: str | None = None, dry_run: bool = True) -> dict:
         """Sync files from Windows to WSL.
 
         Args:
@@ -371,7 +372,7 @@ class Persephone:
         return results
 
     def run_in_wsl(
-        self, command: str, python_env: (str | None) = None
+        self, command: str, python_env: str | None = None
     ) -> tuple[str, str, int]:
         """Run command in WSL.
 
@@ -390,8 +391,13 @@ class Persephone:
 
         try:
             result = subprocess.run(
-                ["wsl", "bash", "-c", full_command], capture_output=True, text=True, encoding="utf-8", errors="replace",
-            timeout=1800)
+                ["wsl", "bash", "-c", full_command],
+                capture_output=True,
+                text=True,
+                encoding="utf-8",
+                errors="replace",
+                timeout=1800,
+            )
             return result.stdout, result.stderr, result.returncode
         except Exception as e:
             note_failure("persephone:L384", e)
@@ -407,7 +413,7 @@ class Persephone:
             Generated script content
         """
         if shell in ["bash", "zsh"]:
-            return f'''# PERSEPHONE Environment Setup
+            return f"""# PERSEPHONE Environment Setup
 # Add to ~/.bashrc or ~/.zshrc
 
 # Paths
@@ -427,9 +433,9 @@ alias azazael="python $Azazael_ROOT/scripts/azazael_cli.py"
 alias persephone="python $PERSEPHONE_ROOT/bin/persephone.py"
 alias sync="rsync -avz $Azazael_ROOT/ $PERSEPHONE_ROOT/ --exclude='__pycache__'"
 alias ws="wsl"
-'''
+"""
         elif shell == "powershell":
-            return f'''# PERSEPHONE Environment Setup
+            return f"""# PERSEPHONE Environment Setup
 # Add to $PROFILE
 
 # Paths
@@ -443,7 +449,7 @@ $env:PYTHONPATH = "$env:PERSEPHONE_ROOT\\lib;$env:PYTHONPATH"
 # Aliases
 set-Alias -Name azazael -Value "python $env:Azazael_ROOT\\scripts\\azazael_cli.py"
 set-Alias -Name persephone -Value "python $env:PERSEPHONE_ROOT\\bin\\persephone.py"
-'''
+"""
 
         return ""
 

@@ -6,16 +6,17 @@ Advanced path handling for cross-platform development.
 """
 
 from pathlib import Path
+
 # from typing import Optional, Dict, List  # removed — all names have native equivalents
 from dataclasses import dataclass
-from typing import List
 
 #: Swallows recorded when the failure ledger is unavailable (it is a stdlib-only
 #: leaf, so this fallback should never fire -- if it does, the ledger is missing).
 
 try:
     from CORE.failure_ledger import note_failure
-except ImportError:                               # never break the host
+except ImportError:  # never break the host
+
     def note_failure(where: str, exc: BaseException | None = None) -> None:
         pass  # ledger missing; evidence-vs-silence tradeoff capped here
 
@@ -53,9 +54,7 @@ class PathManager:
             f"/mnt/c/Users/{_username}/Desktop/PERSEPHONE",
         )
         self.register("wsa", "\\\\wsl$Ubuntu\\home\\", "/home/")
-        self.register(
-            "desktop", str(_desktop), f"/mnt/c/Users/{_username}/Desktop"
-        )
+        self.register("desktop", str(_desktop), f"/mnt/c/Users/{_username}/Desktop")
         self.register(
             "documents", str(_home / "Documents"), f"/mnt/c/Users/{_username}/Documents"
         )
@@ -65,7 +64,7 @@ class PathManager:
         exists = Path(windows).exists() or Path(wsl).exists()
         self.paths[name] = PathInfo(name, windows, wsl, exists)
 
-    def get(self, name: str, platform: str | None = None) -> (PathInfo | None):
+    def get(self, name: str, platform: str | None = None) -> PathInfo | None:
         """Get path information by name."""
         return self.paths.get(name)
 
@@ -83,7 +82,7 @@ class PathManager:
             return f"{drive}:{wsl_path[6:]}".replace("/", "\\")
         return wsl_path
 
-    def detect(self, name: str) -> (PathInfo | None):
+    def detect(self, name: str) -> PathInfo | None:
         """Detect if a path exists and update status."""
         if name in self.paths:
             info = self.paths[name]

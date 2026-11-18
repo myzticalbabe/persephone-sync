@@ -8,16 +8,17 @@ Cross-platform environment configuration.
 import os
 import sys
 from pathlib import Path
+
 # from typing import Dict, Optional  # removed — all names have native equivalents
 from dataclasses import dataclass
-from typing import List
 
 #: Swallows recorded when the failure ledger is unavailable (it is a stdlib-only
 #: leaf, so this fallback should never fire -- if it does, the ledger is missing).
 
 try:
     from CORE.failure_ledger import note_failure
-except ImportError:                               # never break the host
+except ImportError:  # never break the host
+
     def note_failure(where: str, exc: BaseException | None = None) -> None:
         pass  # ledger missing; evidence-vs-silence tradeoff capped here
 
@@ -51,7 +52,9 @@ class EnvironmentManager:
         self.set("PERSEPHONE_ROOT", str(_desktop / "PERSEPHONE"), "all")
         self.set(
             "PYTHONPATH",
-            str(_desktop / "Azazael" / "ml_platforms") + ";" + str(_desktop / "PERSEPHONE" / "lib"),
+            str(_desktop / "Azazael" / "ml_platforms")
+            + ";"
+            + str(_desktop / "PERSEPHONE" / "lib"),
             "windows",
         )
         self.set(
@@ -64,7 +67,7 @@ class EnvironmentManager:
         """set an environment variable."""
         self.variables[name] = EnvVar(name, value, platform)
 
-    def get(self, name: str) -> (str | None):
+    def get(self, name: str) -> str | None:
         """Get environment variable value."""
         if name in self.variables:
             var = self.variables[name]

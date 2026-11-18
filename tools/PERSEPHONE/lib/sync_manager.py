@@ -21,7 +21,7 @@ Usage:
 import subprocess
 import json
 from pathlib import Path
-from typing import Callable, List
+from typing import Callable
 from dataclasses import dataclass, field
 from datetime import datetime
 import argparse
@@ -31,7 +31,8 @@ import argparse
 
 try:
     from CORE.failure_ledger import note_failure
-except ImportError:                               # never break the host
+except ImportError:  # never break the host
+
     def note_failure(where: str, exc: BaseException | None = None) -> None:
         pass  # ledger missing; evidence-vs-silence tradeoff capped here
 
@@ -112,7 +113,7 @@ class SyncManager:
             ".DS_Store",
             "Thumbs.db",
         ]
-        self.progress_callback: (Callable | None) = None
+        self.progress_callback: Callable | None = None
 
     def _rsync_command(
         self, source: str, target: str, dry_run: bool = True, delete: bool = False
@@ -171,7 +172,14 @@ class SyncManager:
                 result.success = True
                 result.warnings.append("Dry run - no files transferred")
             else:
-                result_obj = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800)
+                result_obj = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=1800,
+                )
                 if result_obj.returncode in [0, 24]:
                     result.success = True
                     result.files_synced = -1  # Multiple
@@ -211,7 +219,14 @@ class SyncManager:
             Path(target).mkdir(parents=True, exist_ok=True)
             cmd = self._robocopy_command(source, target, mirror)
             try:
-                result_obj = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800)
+                result_obj = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=1800,
+                )
                 result.success = result_obj.returncode in [0, 1]
                 result.files_synced = -1
             except Exception as e:
@@ -224,7 +239,10 @@ class SyncManager:
         return result
 
     def sync_windows_to_wsa(
-        self, source: str | None = None, wsa_path: str = "/mnt/sdcard/", dry_run: bool = True
+        self,
+        source: str | None = None,
+        wsa_path: str = "/mnt/sdcard/",
+        dry_run: bool = True,
     ) -> SyncResult:
         """Sync files from Windows to WSA via ADB."""
         if source is None:
@@ -241,7 +259,14 @@ class SyncManager:
                 result.success = True
                 result.warnings.append("Dry run - no files transferred via ADB")
             else:
-                result_obj = subprocess.run(cmd, capture_output=True, text=True, encoding="utf-8", errors="replace", timeout=1800)
+                result_obj = subprocess.run(
+                    cmd,
+                    capture_output=True,
+                    text=True,
+                    encoding="utf-8",
+                    errors="replace",
+                    timeout=1800,
+                )
                 if result_obj.returncode == 0:
                     result.success = True
                     result.files_synced = -1
