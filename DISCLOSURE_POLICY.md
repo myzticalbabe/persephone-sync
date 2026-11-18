@@ -2,39 +2,58 @@
 
 ## Purpose
 
-This policy governs how Project_PERSEPHONE_Sync handles sensitive information encountered during
-its operation as a specialized component in the Azazael ecosystem.
+This document outlines the disclosure policy for the Persephone Sync project, governing how information about the project, its development, and its community is shared publicly.
 
-## What We Do Not Distribute
+## Public Information
 
-Project_PERSEPHONE_Sync **does not distribute**:
+The following information is considered public and may be freely shared:
 
-- Raw primary data from analyzed systems (unless explicitly allowed by license)
-- Secrets, API keys, credentials found during operation
-- Proprietary algorithms or business logic from analyzed codebases
-- Any material about identifiable individuals that is not already public
+- Source code (MIT/CDDL licensed)
+- Documentation and README files
+- Release notes and changelogs
+- Public issue discussions (excluding security issues)
+- CI/CD pipeline status
+- Contributor guidelines
 
-## What We Do Distribute
+## Restricted Information
 
-- The component **METHOD** (algorithms, patterns, techniques)
-- Open-source tooling for specialized operations
-- Documentation and examples using synthetic/public data
-- Configuration templates
+The following information must NOT be disclosed without explicit authorization:
 
-## Handling Sensitive Data
+- Security vulnerabilities (until patched and disclosed per SECURITY.md)
+- Private contributor information (emails, addresses, etc.)
+- Internal project management discussions
+- Unreleased features or roadmap details marked as confidential
+- Infrastructure credentials, API keys, or secrets
+- Private repository contents (if any)
 
-If the component encounters sensitive data (secrets, keys, PII, proprietary code):
+## Disclosure Process
 
-1. **Stop** — do not commit, log, or report the sensitive data
-2. **Redact** — remove or hash the sensitive identifiers
-3. **Report** — notify the project maintainers via security@azazael.local
-4. **Verify** — ensure no sensitive data would be distributed
+### Security Issues
+Follow the process in SECURITY.md — private disclosure to security@persephone-sync.dev
 
-## Attribution
+### General Project Information
+- Public announcements via GitHub Releases
+- Blog posts and social media by maintainers only
+- Conference talks and presentations with maintainer approval
 
-The Contributor Covenant text in CODE_OF_CONDUCT.md is used under
-CC BY 4.0 with attribution retained in that file.
+### Media Inquiries
+Direct all media inquiries to the project maintainers at maintainers@persephone-sync.dev
+
+## Compliance
+
+All contributors and maintainers must:
+- Not disclose restricted information
+- Follow the security disclosure process for vulnerabilities
+- Obtain approval before speaking on behalf of the project
+- Respect contributor privacy
+
+## Violations
+
+Violations of this policy may result in:
+- Removal from the project (contributors)
+- Revocation of maintainer privileges
+- Legal action (for disclosure of trade secrets or PII)
 
 ## Contact
 
-For questions about this policy, contact **disclosure@azazael.local**.
+For questions about this policy, contact maintainers@persephone-sync.dev

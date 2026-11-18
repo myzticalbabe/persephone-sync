@@ -5,41 +5,36 @@
 | Version | Supported          |
 | ------- | ------------------ |
 | 0.1.x   | :white_check_mark: |
+| < 0.1   | :x:                |
 
 ## Reporting a Vulnerability
 
-**Do not report security vulnerabilities via public GitHub issues.**
+We take security vulnerabilities seriously. If you discover a security vulnerability in Persephone Sync, please report it responsibly:
 
-Instead, please report them via email to **security@azazael.local**.
+1. **Do not** create a public GitHub issue for the vulnerability
+2. Email the details to security@persephone-sync.dev
+3. Include:
+   - Description of the vulnerability
+   - Steps to reproduce
+   - Potential impact
+   - Any suggested fixes
 
-Include the following information:
+We will:
+- Acknowledge receipt within 48 hours
+- Provide a preliminary assessment within 5 business days
+- Keep you informed of progress
+- Credit you in the security advisory (unless you prefer anonymity)
 
-- Description of the vulnerability
-- Steps to reproduce
-- Potential impact
-- Any known workarounds
+## Security Best Practices
 
-We will acknowledge receipt within 48 hours and provide a status update
-within 5 business days.
-
-## Security Model
-
-Project_PERSEPHONE_Sync is a specialized component with the following security properties:
-
-1. **Minimal dependencies** — stdlib-only where possible
-2. **No network access** — unless explicitly required for the component's function
-3. **No arbitrary code execution** — does not eval or execute untrusted code
-4. **Input validation** — all external inputs validated at boundaries
-
-## Disclosure Policy
-
-We follow coordinated disclosure. Once a vulnerability is confirmed and a
-fix is available, we will:
-
-1. Release a patch
-2. Publish a security advisory
-3. Credit the reporter (unless they request anonymity)
+- Keep dependencies updated
+- Use `pip-audit` or `safety` to check for known vulnerabilities
+- Enable 2FA on your GitHub account
+- Never commit secrets or API keys
 
 ## Scope
 
-This policy covers the component's source code and any bundled dependencies.
+This security policy applies to:
+- The persephone-sync package on PyPI
+- The GitHub repository at github.com/myzticalbabe/persephone-sync
+- All official distributions

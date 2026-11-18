@@ -1,0 +1,69 @@
+{
+  "project": "persephone-sync",
+  "version": "0.1.0",
+  "description": "Persephone Sync — Cross-Platform Environment Sync Utilities extracted from AZAZAEL",
+  "repository": "https://github.com/myzticalbabe/persephone-sync",
+  "license": "CDDL-1.1",
+  "authors": [
+    {
+      "name": "Azazael Contributors",
+      "email": "maintainers@persephone-sync.dev",
+      "url": "https://github.com/myzticalbabe"
+    }
+  ],
+  "keywords": [
+    "sync",
+    "cross-platform",
+    "environment",
+    "windows",
+    "wsl2",
+    "kali"
+  ],
+  "classifiers": [
+    "Development Status :: 3 - Alpha",
+    "Intended Audience :: Developers",
+    "License :: OSI Approved :: Common Development and Distribution License 1.1 (CDDL-1.1)",
+    "Programming Language :: Python :: 3",
+    "Programming Language :: Python :: 3.10",
+    "Programming Language :: Python :: 3.11",
+    "Programming Language :: Python :: 3.12",
+    "Programming Language :: Python :: 3.13",
+    "Programming Language :: Python :: 3.14",
+    "Programming Language :: Python :: 3.15",
+    "Programming Language :: Python :: 3.16",
+    "Topic :: Software Development :: Libraries",
+    "Topic :: System :: Archiving :: Mirroring",
+    "Topic :: Utilities"
+  ],
+  "python_requires": ">=3.10",
+  "dependencies": [],
+  "optional_dependencies": {
+    "dev": [
+      "pytest>=7.0",
+      "pytest-cov>=4.0",
+      "pytest-xdist>=3.0",
+      "black>=23.0",
+      "ruff>=0.1.0",
+      "mypy>=1.0"
+    ],
+    "docs": [
+      "sphinx>=6.0",
+      "sphinx-rtd-theme>=1.0"
+    ]
+  },
+  "entry_points": {
+    "console_scripts": [
+      "persephone-sync=persephone_sync.cli:main"
+    ]
+  },
+  "urls": {
+    "Homepage": "https://github.com/myzticalbabe/persephone-sync",
+    "Repository": "https://github.com/myzticalbabe/persephone-sync",
+    "Issues": "https://github.com/myzticalbabe/persephone-sync/issues",
+    "Documentation": "https://github.com/myzticalbabe/persephone-sync/docs",
+    "Changelog": "https://github.com/myzticalbabe/persephone-sync/blob/main/CHANGELOG.md",
+    "Security": "https://github.com/myzticalbabe/persephone-sync/security/policy"
+  },
+  "manifest_version": 1,
+  "generated_at": "2026-11-18T00:00:00Z"
+}

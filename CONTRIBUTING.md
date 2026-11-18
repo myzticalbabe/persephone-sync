@@ -1,51 +1,48 @@
-# Contributing to Project_PERSEPHONE_Sync
+# Contributing to Persephone Sync
 
-Thank you for considering a contribution to Project_PERSEPHONE_Sync!
+## How to Contribute
 
-## Quick Start
+### Reporting Issues
+- Use the bug report template (.github/ISSUE_TEMPLATE/bug_report.yml)
+- Include reproduction steps, expected vs actual behavior
+- Specify Python version, OS, and persephone-sync version
 
+### Pull Request Process
 1. Fork the repository
-2. Create a feature branch: `git checkout -b feature/your-change`
-3. Make your changes
-4. Run the test suite: `python -m pytest tests/ -v`
-5. Submit a pull request
+2. Create a feature branch from `main`
+3. Make your changes with tests
+4. Ensure all tests pass: `python -m pytest -v`
+5. Update CHANGELOG.md
+6. Submit PR with description of changes
 
-## Code Standards
+### Coding Conventions
+- **Stdlib-first**: Prefer stdlib over external dependencies
+- **Cross-platform**: Test on Windows, Linux, macOS
+- **Docstrings**: All public methods must have docstrings with Args/Returns
+- **Type hints**: Use type annotations for all public APIs
 
-- **License**: All contributions must be compatible with CDDL-1.1 (the project license)
-- **Python**: 3.10+ (stdlib-only preferred, minimal runtime dependencies)
-- **Style**: Follow the existing code style in the repository
-- **Tests**: New functionality must include tests
-- **Documentation**: Update relevant docs with your changes
+### Test Organization
+```
+tests/
+  test_sync_*.py      # Sync functionality tests
+  test_robocopy_*.py  # Robocopy tests
+  test_rsync_*.py     # Rsync tests
+  test_integrity_*.py # Integrity verification tests
+```
 
-## What We Accept
+### Running Tests
+```bash
+# Run all tests
+python -m pytest tests/ -v
 
-- Bug fixes
-- Documentation improvements
-- New features aligned with the component's purpose
-- Performance improvements
-- Integration with other Azazael components
+# Run with coverage
+python -m pytest --cov=persephone_sync tests/ -v
+```
 
-## Pull Request Process
-
-1. Ensure all tests pass
-2. The maintainers will review and merge
-
-## Reporting Issues
-
-Use the GitHub issue tracker. Please include:
-- Steps to reproduce
-- Expected vs actual behavior
-- Environment details (OS, Python version)
-
-## Code of Conduct
-
-See [CODE_OF_CONDUCT.md](CODE_OF_CONDUCT.md)
-
-## Security
-
-See [SECURITY.md](SECURITY.md) for reporting security vulnerabilities.
-
-## License
-
-By contributing, you agree that your contributions will be licensed under CDDL-1.1.
+### Pull Request Checklist
+- [ ] Tests written and passing
+- [ ] Docstrings added for public APIs
+- [ ] Type hints added
+- [ ] CHANGELOG.md updated
+- [ ] No breaking changes without version bump
+- [ ] Tested on Windows and Linux (WSL2)
