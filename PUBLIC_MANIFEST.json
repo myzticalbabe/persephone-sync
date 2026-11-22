@@ -1,9 +1,9 @@
 {
   "project": "persephone-sync",
   "version": "0.1.0",
-  "description": "Persephone Sync — Cross-Platform Environment Sync Utilities extracted from AZAZAEL",
+  "description": "Persephone Sync \u2014 Cross-Platform Environment Sync Utilities extracted from AZAZAEL",
   "repository": "https://github.com/myzticalbabe/persephone-sync",
-  "license": "CDDL-1.1",
+  "license": "LicenseRef-SoulForge-1.0",
   "authors": [
     {
       "name": "Azazael Contributors",
