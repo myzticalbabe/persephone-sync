@@ -26,7 +26,7 @@ keywords:
   - "windows"
   - "wsl2"
   - "kali"
-license: "CDDL-1.1"
+license: "LicenseRef-SoulForge-1.0"
 repository: "https://github.com/myzticalbabe/persephone-sync"
 repository-code: "https://github.com/myzticalbabe/persephone-sync"
 repository-artifact: "https://pypi.org/project/persephone-sync/"
